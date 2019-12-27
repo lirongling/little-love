@@ -1,7 +1,7 @@
 // 封装axios请求
 import axios from 'axios'
 import qs from 'qs'
-import {Loading} from 'element-ui'
+import { Loading } from 'element-ui'
 
 let loading = null
 
@@ -15,7 +15,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 const service = axios.create()
 
 // 接口基础路径
-service.defaults.baseURL = isProduction ? '线上接口地址' : ''
+service.defaults.baseURL = isProduction ? 'http://localhost:3000' : '/api'
 // 超时时间
 service.defaults.timeout = 10000
 // 请求头类型
@@ -52,7 +52,7 @@ service.interceptors.response.use(response => {
 
 
 // 封装get和post
-service.req = function (...params) {
+service.req = function(...params) {
   if (params.length === 1) {
     // 发的是get请求
     return service.get(params[0])
